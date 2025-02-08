@@ -15,7 +15,6 @@ public class BotApi
                 var Response = Client.GetStringAsync($"{URL}getUpdates?offset={offset}").Result;
                 return Response;
             }
-
         }
         catch
         {
