@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AI;
 
-public class API
+public class AiApi
 {
 	public static async Task<string> sendData(string Url, string data)
 	{
