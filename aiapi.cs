@@ -13,7 +13,6 @@ public class AiApi
             {
                 using (HttpClient Client = new HttpClient())
                 {
-                    //FormUrlEncodedContent Content = new FormUrlEncodedContent(data);
                     var Content = new StringContent(data, Encoding.UTF8, "application/json");
                     HttpResponseMessage Response = Client.PostAsync(Url, Content).Result;
                     return Response.Content.ReadAsStringAsync().Result;
@@ -25,7 +24,7 @@ public class AiApi
             }
         });
     }
-    public string using_ai(string promt_user)
+    public string ai_response(string promt_user)
     {
         var data = new
         {

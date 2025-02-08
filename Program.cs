@@ -7,26 +7,31 @@ AiApi ai_api = new AiApi();
 
 Console.WriteLine("Start Bot ... ");
 
-dynamic offset = 0;
+long offset = 0;
 while (true)
 {
     dynamic t_data = telegramBotApi.getUpdate(offset);
     t_data = JsonConvert.DeserializeObject<dynamic>(t_data);
     foreach (var item in t_data["result"])
     {
-        if (item["message"]["text"] != "" && item["message"]["text"] != null)
+        try
         {
-            _ = Task.Run(() =>
+            if ((string)item["message"]["text"] != "")
             {
-                var from_ai = ai_api.using_ai(item["message"]["text"]);
-                telegramBotApi.sendMessage(from_ai, item["message"]["chat"]["id"]);
                 Console.WriteLine(item["message"]["chat"]["id"]);
-            });
-            offset += item["update_id"] + 1;
+                // _ = Task.Run(() =>
+                // {
+                Console.WriteLine(item["message"]["text"]);
+                var from_ai = ai_api.ai_response(item["message"]["text"]);
+                telegramBotApi.sendMessage(from_ai, item["message"]["chat"]["id"]);
+                // });
+            }
         }
-        else
+        catch (Exception ex)
         {
-            offset += item["update_id"] + 1;
+            Console.WriteLine(ex.Message);
         }
+
+        offset = item["update_id"] + 1;
     }
 }
