@@ -7,7 +7,7 @@ public class BotApi
     private const string URL = "https://api.telegram.org/bot7568152532:AAG87-fHww5J78cYP4nmSxC3usoPfXqGE7Q/";
     public string getUpdate(long offset)
     {
-        string json = null;
+        string? json = null;
         try
         {
             using (HttpClient Client = new HttpClient())
