@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("chat-bot-ai")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f577152260bf7f9c3beede73e6baa37a5400e60")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7ebcab25fd125453770ac5c0ae1e7626b7d6aba")]
 [assembly: System.Reflection.AssemblyProductAttribute("chat-bot-ai")]
 [assembly: System.Reflection.AssemblyTitleAttribute("chat-bot-ai")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
