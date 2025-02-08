@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System.Text;
 
-namespace AI;
+namespace API;
 
 public class AiApi
 {

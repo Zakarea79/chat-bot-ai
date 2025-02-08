@@ -1,10 +1,20 @@
-using System.Net;
-
 namespace API;
 
-public class BotApi
+public class TelegramBotApi
 {
-    private const string URL = "https://api.telegram.org/bot7568152532:AAG87-fHww5J78cYP4nmSxC3usoPfXqGE7Q/";
+    private const string URL = "https://api.telegram.org/bot";
+    private string? _token;
+    public string Token
+    {
+        get
+        {
+            return _token + "/";
+        }
+        set
+        {
+            _token = value;
+        }
+    }
     public string getUpdate(long offset)
     {
         string? json = null;
@@ -12,7 +22,7 @@ public class BotApi
         {
             using (HttpClient Client = new HttpClient())
             {
-                var Response = Client.GetStringAsync($"{URL}getUpdates?offset={offset}").Result;
+                var Response = Client.GetStringAsync($"{URL + Token}getUpdates?offset={offset}").Result;
                 return Response;
             }
         }
