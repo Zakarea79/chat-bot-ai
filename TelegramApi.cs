@@ -38,7 +38,7 @@ public class TelegramBotApi
         {
             using (HttpClient Client = new HttpClient())
             {
-                _ = Client.GetStringAsync($"{URL}sendMessage?chat_id={chat_id}&text={message}").Result;
+                _ = Client.GetStringAsync($"{URL}{Token}sendMessage?chat_id={chat_id}&text={message}").Result;
             }
         }
         catch (Exception)
