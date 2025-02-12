@@ -8,7 +8,7 @@ public class TelegramBotApi
     {
         get
         {
-            return _token + "/";
+            return $"{URL}{_token}/";
         }
         set
         {
@@ -22,7 +22,7 @@ public class TelegramBotApi
         {
             using (HttpClient Client = new HttpClient())
             {
-                var Response = Client.GetStringAsync($"{URL + Token}getUpdates?offset={offset}").Result;
+                var Response = Client.GetStringAsync($"{Token}getUpdates?offset={offset}").Result;
                 return Response;
             }
         }
@@ -38,7 +38,7 @@ public class TelegramBotApi
         {
             using (HttpClient Client = new HttpClient())
             {
-                _ = Client.GetStringAsync($"{URL}{Token}sendMessage?chat_id={chat_id}&text={message}").Result;
+                _ = Client.GetStringAsync($"{Token}sendMessage?chat_id={chat_id}&text={message}").Result;
             }
         }
         catch (Exception)
