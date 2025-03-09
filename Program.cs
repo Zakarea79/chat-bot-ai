@@ -21,7 +21,7 @@ while (true)
                 Console.WriteLine(item["message"]["chat"]["id"]);
                 _ = Task.Run(() =>
                 {
-                    var from_ai = ai_api.ai_response(item["message"]["text"]);
+                    var from_ai = ai_api.ai_response((string)item["message"]["text"]);
                     telegramBotApi.sendMessage(item["message"]["chat"]["id"], from_ai);
                 });
             }
