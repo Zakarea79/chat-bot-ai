@@ -32,18 +32,32 @@ public class TelegramBotApi
         }
         return json;
     }
-    public void sendMessage(dynamic chat_id, string message)
+    public string UpdateMessage(dynamic chat_id, dynamic msg_id, string message)
     {
         try
         {
             using (HttpClient Client = new HttpClient())
             {
-                _ = Client.GetStringAsync($"{Token}sendMessage?chat_id={chat_id}&text={message}").Result;
+                return Client.GetStringAsync($"{Token}editMessageText?chat_id={chat_id}&message_id={msg_id}&text={message}").Result;
             }
         }
         catch (Exception)
         {
-            sendMessage(chat_id, message);
+            return "---false---";
+        }
+    }
+    public string sendMessage(dynamic chat_id, string message)
+    {
+        try
+        {
+            using (HttpClient Client = new HttpClient())
+            {
+                return Client.GetStringAsync($"{Token}sendMessage?chat_id={chat_id}&text={message}").Result;
+            }
+        }
+        catch (Exception)
+        {
+            return "---false---";
         }
     }
 }

@@ -19,10 +19,24 @@ while (true)
             if ((string)item["message"]["text"] != "")
             {
                 Console.WriteLine(item["message"]["chat"]["id"]);
-                _ = Task.Run(() =>
+                _ = Task.Run(async () =>
                 {
-                    var from_ai = ai_api.ai_response((string)item["message"]["text"]);
-                    telegramBotApi.sendMessage(item["message"]["chat"]["id"], from_ai);
+                    dynamic? msg_id = null;
+                    string? Message = null;
+                    await foreach (var chunk in ai_api.ai_response_async((string)item["message"]["text"]))
+                    {
+                        Message += chunk.ToString();
+                        if (msg_id != null)
+                        {
+                            telegramBotApi.UpdateMessage(item["message"]["chat"]["id"], msg_id, Message);
+                            continue;
+                        }
+                        var res = telegramBotApi.sendMessage(item["message"]["chat"]["id"], Message);
+                        msg_id = JsonConvert.DeserializeObject<dynamic>(res)["result"]["message_id"];
+                        Console.WriteLine($"{msg_id}");
+                    }
+                    telegramBotApi.UpdateMessage(item["message"]["chat"]["id"], msg_id, Message + "\n-------end-------");
+
                 });
             }
         }
